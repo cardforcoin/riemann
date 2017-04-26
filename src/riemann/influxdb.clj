@@ -195,7 +195,7 @@
              opts (merge opts ;; we can have per event :db :retention :consistency
                          (select-keys event [:db :retention :consistency]))
              batch-point (get-batchpoint opts)
-             _ (doseq [event events] (.point batch-point (event->point event opts)))]
+             _ (doseq [event (keep events)] (.point batch-point (event->point event opts)))]
          batch-point)))
    events))
 
